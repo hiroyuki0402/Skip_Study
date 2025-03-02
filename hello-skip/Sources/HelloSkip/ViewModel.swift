@@ -29,6 +29,10 @@ fileprivate let logger: Logger = Logger(subsystem: "HelloSkip", category: "Hello
             i.id == item.id ? item : i
         }
     }
+
+    public func updateName(_ name: String) {
+        self.name = name
+    }
 }
 
 /// An individual item held by the ViewModel

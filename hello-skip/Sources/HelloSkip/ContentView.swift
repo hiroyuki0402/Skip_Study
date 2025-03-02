@@ -38,18 +38,31 @@ struct ContentView: View {
 
 struct WelcomeView : View {
     @State var heartBeating = false
+
     @Environment(ViewModel.self) var viewModel: ViewModel
 
     var body: some View {
+
         @Bindable var viewModel = viewModel
+
         VStack(spacing: 0) {
+
             Text("Hello [\(viewModel.name)](https://skip.tools)!")
                 .padding()
+
             Image(systemName: "heart.fill")
                 .foregroundStyle(.red)
                 .scaleEffect(heartBeating ? 1.5 : 1.0)
                 .animation(.easeInOut(duration: 1).repeatForever(), value: heartBeating)
                 .onAppear { heartBeating = true }
+                .padding(.bottom)
+
+            Button {
+                viewModel.updateName("https://skip.tools")
+            } label: {
+                Text("Show Links")
+            }
+            .buttonStyle(.bordered)
         }
         .font(.largeTitle)
     }
