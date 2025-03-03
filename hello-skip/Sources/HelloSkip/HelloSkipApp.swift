@@ -12,12 +12,14 @@ let androidSDK = ProcessInfo.processInfo.environment["android.os.Build.VERSION.S
 /// The default implementation merely loads the `ContentView` for the app and logs a message.
 public struct HelloSkipRootView : View {
     @ObservedObject var appDelegate = HelloSkipAppDelegate.shared
+    @State private var productViewModel: ProductViewModel = .init()
 
     public init() {
     }
 
     public var body: some View {
-        ContentView()
+        ProductView()
+            .environment(productViewModel)
             .task {
                 logger.info("Welcome to Skip on \(androidSDK != nil ? "Android" : "Darwin")!")
                 logger.info("Skip app logs are viewable in the Xcode console for iOS; Android logs can be viewed in Studio or using adb logcat")
