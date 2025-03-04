@@ -18,12 +18,14 @@ public struct HelloSkipRootView : View {
     }
 
     public var body: some View {
-        ProductView()
-            .environment(productViewModel)
-            .task {
-                logger.info("Welcome to Skip on \(androidSDK != nil ? "Android" : "Darwin")!")
-                logger.info("Skip app logs are viewable in the Xcode console for iOS; Android logs can be viewed in Studio or using adb logcat")
-            }
+        NavigationStack {
+            ProductView()
+                .environment(productViewModel)
+                .task {
+                    logger.info("Welcome to Skip on \(androidSDK != nil ? "Android" : "Darwin")!")
+                    logger.info("Skip app logs are viewable in the Xcode console for iOS; Android logs can be viewed in Studio or using adb logcat")
+                }
+        }
     }
 }
 

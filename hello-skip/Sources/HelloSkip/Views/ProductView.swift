@@ -9,6 +9,7 @@ import SwiftUI
 struct ProductView: View {
 
     @Environment(ProductViewModel.self) var viewModel
+    @State var isPresented: Bool = false
 
     var body: some View {
         VStack {
@@ -26,7 +27,19 @@ struct ProductView: View {
 
                 }
             }
+
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("AddProduct") {
+                    isPresented = true
+                }
+            }
         }
+        .sheet(isPresented: $isPresented) {
+            NavigationStack {
+                AddProductView()
+            }
+        }
+        .navigationTitle("Products")
     }
 }
 

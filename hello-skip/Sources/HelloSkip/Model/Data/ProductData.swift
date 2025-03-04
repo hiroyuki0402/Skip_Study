@@ -2,13 +2,13 @@ import Foundation
 
 // MARK: - ProductData
 struct ProductData: Codable, Hashable {
-    let id: Int
+    let id: Int?
     let title: String
     let price: Double
     let description: String
     let category: Category
     let image: String
-    let rating: Rating
+    let rating: Rating?
 }
 
 enum Category: String, Codable, Hashable {
