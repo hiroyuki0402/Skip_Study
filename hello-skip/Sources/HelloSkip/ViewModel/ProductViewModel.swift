@@ -5,18 +5,22 @@ import Observation
 class ProductViewModel {
     var products: ProductDatas = []
 
-    private let url = URL(string: "https://fakestoreapi.com/products")
-
     public init() {
         fetchProduct()
     }
 
     private func fetchProduct() {
         Task {
-            let product = try? await ApiManager.shared.callProducts(url)
+            let product = try? await ApiManager.shared.callProducts()
             if let product {
                 self.products = product
             }
+        }
+    }
+
+    func postProduct(_ product: ProductData) async throws {
+        if let newProduct = try await ApiManager.shared.postProducts(product) {
+            products.append(newProduct)
         }
     }
 }

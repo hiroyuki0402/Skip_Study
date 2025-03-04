@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "AddProduct" : {
+
+    },
     "Appearance" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -31,6 +34,9 @@
       }
     },
     "Back" : {
+
+    },
+    "Category" : {
 
     },
     "Dark" : {
@@ -210,6 +216,18 @@
         }
       }
     },
+    "Price" : {
+
+    },
+    "Product Details" : {
+
+    },
+    "Products" : {
+
+    },
+    "Save" : {
+
+    },
     "Settings" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -267,6 +285,9 @@
           }
         }
       }
+    },
+    "Title" : {
+
     },
     "Welcome" : {
       "extractionState" : "stale",
