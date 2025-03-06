@@ -46,7 +46,7 @@ struct AddProductView: View {
                     price: price,
                     description: description,
                     category: Category(rawValue: category) ?? .electronics,
-                    image: "https://picsum.photos/id/1/200/300",
+                    image: URL(string: "https://picsum.photos/id/1/200/300")!,
                     rating: .init(rate: 10, count: 1)
                 )
 
