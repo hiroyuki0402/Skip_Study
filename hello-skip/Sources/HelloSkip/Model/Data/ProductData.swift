@@ -1,13 +1,13 @@
 import Foundation
 
 // MARK: - ProductData
-struct ProductData: Codable, Hashable {
+struct ProductData: Codable, Hashable, Identifiable {
     let id: Int?
     let title: String
     let price: Double
     let description: String
     let category: Category
-    let image: String
+    let image: URL
     let rating: Rating?
 }
 

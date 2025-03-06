@@ -10,28 +10,30 @@ struct ProductView: View {
 
     @Environment(ProductViewModel.self) var viewModel
     @State var isPresented: Bool = false
+    @State var selectedProduct: ProductData?
 
     var body: some View {
         VStack {
             ScrollView {
                 LazyVStack {
                     ForEach(viewModel.products, id: \.self) { product in
-                        ProductsRowItem(product: product)
+                        ProductsRowItem(product: product) {
+                            selectedProduct = $0
+                        }
                     }
                 }
             }
         }
         .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                Button("Back") {
-
-                }
-            }
-
             ToolbarItem(placement: .topBarTrailing) {
                 Button("AddProduct") {
                     isPresented = true
                 }
+            }
+        }
+        .fullScreenCover(item: $selectedProduct) { product in
+            NavigationStack {
+                ProductDetailView(productData: product)
             }
         }
         .sheet(isPresented: $isPresented) {
@@ -40,19 +42,23 @@ struct ProductView: View {
             }
         }
         .navigationTitle("Products")
+
     }
 }
+
 
 struct ProductsRowItem: View {
 
     var product: ProductData
+
+    var didTap: ((ProductData) -> Void)?
 
     var body: some View {
         VStack {
             Divider()
             HStack {
 
-                AsyncImage(url: URL(string: product.image)) { image in
+                AsyncImage(url: product.image) { image in
                     image
                         .resizable()
                         .frame(width: 80, height: 80)
@@ -65,6 +71,9 @@ struct ProductsRowItem: View {
             }
             .padding(4)
             .padding(.horizontal)
+            .onTapGesture {
+                didTap?(product)
+            }
 
         }
     }
